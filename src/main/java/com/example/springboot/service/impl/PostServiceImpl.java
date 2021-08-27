@@ -4,11 +4,13 @@ import com.example.springboot.exception.ResourceNotFoundException;
 import com.example.springboot.model.Post;
 import com.example.springboot.repository.PostRepository;
 import com.example.springboot.service.PostService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Log4j2
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
@@ -47,5 +49,11 @@ public class PostServiceImpl implements PostService {
     public void updatePost(Long postId, Post post) {
         post.setId(postId);
         postRepository.save(post);
+    }
+
+    @Override
+    public List<Post> getPostsByTitle(String title) {
+        log.info("getPostsByTitle");
+        return postRepository.findByTitle(title);
     }
 }

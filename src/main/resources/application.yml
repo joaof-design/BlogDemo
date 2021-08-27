@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: info
+    org.springframework: info
+    org.springframework.web: info
+    springframework.web.client.RestTemplate: info
+    org.springframework.security: info
+    com.example: debug
