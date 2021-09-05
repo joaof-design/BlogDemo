@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: info
+    org.springframework: info
+    org.springframework.web: info
+    springframework.web.client.RestTemplate: info
+    org.springframework.security: info
+    com.example: debug
+
+spring:
+  datasource:
+    url: jdbc:sqlite:C:\software\SQLiteDatabaseBrowserPortable\Data\website.db
+    driver-class-name: org.sqlite.JDBC
+    initialization-mode: always
+    username: admin
+    password: admin
+  jpa:
+    database-platform: com.example.springboot.utils.SQLDialect
+    hibernate:
+      ddl-auto: update
+
+info:
+  app:
+    version: '@project.version@'
+    artifactId: '@project.artifactId@'
+    groupId: '@project.groupId@'
+    description: '@project.description@'
+  application:
+    environment: dev
