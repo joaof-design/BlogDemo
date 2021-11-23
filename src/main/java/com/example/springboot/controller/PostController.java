@@ -5,6 +5,7 @@ import com.example.springboot.service.FileService;
 import com.example.springboot.service.PostService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import java.time.Instant;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/v1/api")
+@RequestMapping(value = "/api/v1")
 @Log4j2
 public class PostController {
 
@@ -45,7 +46,6 @@ public class PostController {
         return new ResponseEntity<>(sb.toString(), HttpStatus.OK);
     }
 
-
     @GetMapping("/posts/{postId}")
     public ResponseEntity<Post> getPost(@PathVariable Long postId) {
         log.info("GET Request - Post by postId:" + postId);
@@ -65,6 +65,7 @@ public class PostController {
 
     @PostMapping("/posts")
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
+        log.info("Create Post");
         return new ResponseEntity<>(this.postService.createPost(post), HttpStatus.CREATED);
     }
 

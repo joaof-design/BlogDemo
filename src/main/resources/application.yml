@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8082
 
 logging:
   level:
@@ -12,29 +12,24 @@ logging:
     com.example: debug
 
 spring:
-  #SQLLITE
-  #datasource:
-    #url: jdbc:sqlite:C:\software\SQLiteDatabaseBrowserPortable\Data\blog.db
-    #driver-class-name: org.sqlite.JDBC
-    #initialization-mode: always
-    #username: admin
-    #password: admin
-  #jpa:
-    #database-platform: com.example.springboot.utils.SQLDialect
-    #hibernate:
-      #ddl-auto: update
-  #H2
   datasource:
-    url: jdbc:h2:mem:blog
-    driverClassName: org.h2.Driver
-    username: admin
-    password: admin
+    url: jdbc:postgresql://localhost:5432/quarkus_test
+    driverClassName: org.postgresql.Driver
+    username: quarkus_test
+    password: quarkus_test
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 60
+  cache:
+    type: redis
+    redis:
+        time-to-live: 30
+        cache-null-values: false
 
 info:
   app:

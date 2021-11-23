@@ -5,6 +5,7 @@ import com.example.springboot.model.Post;
 import com.example.springboot.repository.PostRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class PostService {
         this.fileService = fileService;
     }
 
+    @Cacheable(value = "posts", key = "#postId")
     public Post getPost(Long postId) {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("PostId " + postId + " not found"));
