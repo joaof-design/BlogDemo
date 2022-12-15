@@ -1,10 +1,10 @@
 server:
-  port: 8082
+  port: 8080
 
 logging:
   level:
     root: info
-    org.hibernate.SQL: error
+    org.hibernate.SQL: debug
     org.springframework: info
     org.springframework.web: info
     springframework.web.client.RestTemplate: info

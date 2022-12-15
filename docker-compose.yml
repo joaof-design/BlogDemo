@@ -1,6 +1,6 @@
 # A Docker Compose must always start with the version tag.
 # We use '3' because it's the last version.
-version: '3'
+version: '3.8'
 
 # You should know that Docker Compose works with services.
 # 1 service = 1 container.
@@ -22,7 +22,7 @@ services:
     # but take into consideration that it will change the way
     # you are connecting to your database.
     ports:
-      - 5432:5432
+      - "5432:5432"
 
     environment:
       POSTGRES_USER: quarkus_test # The PostgreSQL user (useful to connect to the database)
@@ -30,15 +30,12 @@ services:
       POSTGRES_DB: quarkus_test # The PostgreSQL default database (automatically created at first launch)
 
   spring-boot:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     image: springboot
     ports:
       - "8080:8080"
     depends_on:
       - database
-
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/quarkus_test
       - SPRING_DATASOURCE_USERNAME=quarkus_test

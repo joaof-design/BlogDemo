@@ -34,7 +34,6 @@ public class PostService {
         this.fileService = fileService;
     }
 
-    @Cacheable(value = "posts", key = "#postId")
     public Post getPost(Long postId) {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("PostId " + postId + " not found"));
@@ -73,7 +72,7 @@ public class PostService {
                         throw new RuntimeException("Error in parsing file");
                     }
                 })
-                .thenApply(list -> postRepository.saveAll(list));
+                .thenApply(postRepository::saveAll);
 
         Instant end = Instant.now();
         log.debug("createPostsByFile Duration: " + Duration.between(begin, end));
