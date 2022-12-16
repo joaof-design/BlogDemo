@@ -1,28 +1,9 @@
 # Springboot
 
 ## Running the Spring Boot application to test it locally
-
-First create a jar file running the following command
-
-@@ mvn clean install
-
-\[foo]
-
-
-*[foo*]
-
-
-- `one
-- two`
-
-
-## Installation
 ***
-A little intro about the installation. 
+Create a jar file running the following command
 ```
-$ git clone https://example.com
-$ cd ../path/to/the/file
-$ npm install
-$ npm start
+$ mvn clean install
 ```
 Note: To use the application in a special environment use ```lorem ipsum``` to start.
