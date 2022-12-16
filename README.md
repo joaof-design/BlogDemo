@@ -6,4 +6,13 @@ Create a jar file running the following command
 ```
 $ mvn clean install
 ```
-Note: To use the application in a special environment use ```lorem ipsum``` to start.
+
+Build the docker image using the previous created jar
+```
+$ docker build -t spring_boot_kafka .
+```
+
+Run the containers
+```
+docker-compose -f ./docker-compose.yml up -d
+```
